@@ -1,0 +1,6 @@
+**/out
+**/.idea
+*.log
+*.class
+*.xml
+*.txt
