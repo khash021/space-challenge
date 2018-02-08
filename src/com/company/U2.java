@@ -1,14 +1,47 @@
 package com.company;
 
+/**
+ * The U2 Rocket heavier than the U-1 but much safer and can carry a lot more cargo; to a total of 29 tonnes. However,
+ * it costs $120 Million to build and weighs 20 tonnes. It has a greater chance of crashing while landing than while
+ * launching, but just like the U-1 both chances depend on the amount of cargo carried.
+ */
+
 public class U2 extends Rocket {
 
-    //Fields. All weights are in tonnes, and cost in Million $
-    final int cost = 200;
-    final private int rocketWeight = 18;
-    final private int maxWeight = 29;
-    //maxCargo is the maximum weight of the cargo
-    final private int maxCargo = maxWeight - rocketWeight;
-    int cargo;
+    //Constructor: assigning values to Rocket Fields. All weights are in tonnes, and cost in Million $
+    U2 () {
+        cost=120;
+        rocketWeight=18;
+        maxWeight=29;
+        maxCargo = maxWeight - rocketWeight;
+        cargo=0;
+        probLaunchSuccess = 1 - (0.04 * (cargo/maxCargo));
+        probLandSuccess = 1 - (0.08 * (cargo/maxCargo));
+    }
+
+
+    //Launch method; return true if the launch was successful
+    public boolean launch(int cargo) {
+        int success = (int) (Math.random() * (probLaunchSuccess * 10));
+        if (success >= 1) {
+            rocketStatus = "launched";
+            return true;
+        } else {
+            rocketStatus = "exploded";
+            return false;
+        }
+    }
+
+    public boolean land(int cargo) {
+        int success = (int) (Math.random() * (probLandSuccess * 10));
+        if (success >= 1) {
+            rocketStatus = "landed";
+            return true;
+        } else {
+            rocketStatus = "crashed";
+            return false;
+        }
+    }
 
 
 }
