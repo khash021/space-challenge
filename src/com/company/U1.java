@@ -10,5 +10,16 @@ public class U1 extends Rocket {
     final int maxCargo = maxWeight - rocketWeight;
     int cargo;
 
-
+    //Override the launch method so we can simulate if the launch will be successful, or result in a crash
+    @Override
+    //need to change this later to take an Item object as an input not hte cargo weight
+    public boolean launch(int cargo) {
+        double chance = (cargo / this.maxCargo) * (1 - 0.05);
+        int success = (int) (Math.random() * (chance * 10));
+        if (success>=1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
