@@ -1,9 +1,9 @@
 package com.company;
 
 /**
- * The U2 Rocket heavier than the U-1 but much safer and can carry a lot more cargo; to a total of 29 tonnes. However,
+ * The U2 Rocket heavier than the U-1 but much safer and can carry a lot more currentCargo; to a total of 29 tonnes. However,
  * it costs $120 Million to build and weighs 20 tonnes. It has a greater chance of crashing while landing than while
- * launching, but just like the U-1 both chances depend on the amount of cargo carried.
+ * launching, but just like the U-1 both chances depend on the amount of currentCargo carried.
  */
 
 public class U2 extends Rocket {
@@ -14,9 +14,9 @@ public class U2 extends Rocket {
         rocketWeight=18;
         maxWeight=29;
         maxCargo = maxWeight - rocketWeight;
-        cargo=0;
-        probLaunchSuccess = 1 - (0.04 * (cargo/maxCargo));
-        probLandSuccess = 1 - (0.08 * (cargo/maxCargo));
+        currentCargo =0;
+        probLaunchSuccess = 1 - (0.04 * (currentCargo /maxCargo));
+        probLandSuccess = 1 - (0.08 * (currentCargo /maxCargo));
     }
 
 

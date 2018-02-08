@@ -6,8 +6,9 @@ public class Rocket implements SpaceShip {
     int cost=0;
     int rocketWeight=0;
     int maxWeight=0;
-    int cargo=0;           //Current cargo weight of the Rocket
+    int currentCargo =0;        //Current currentCargo weight of the Rocket
     int maxCargo = maxWeight - rocketWeight;
+    int availableCargo = maxCargo - currentCargo;
 
     double probLaunchSuccess=0.0;
     double probLandSuccess=0.0;
@@ -24,7 +25,7 @@ public class Rocket implements SpaceShip {
 
     //This method takes an Item and return true if the Rocket can carry that Item
     public boolean canCarry(Item i) {
-        if(i.weight <= cargo) {
+        if(i.weight <= currentCargo) {
             return true;
         } else {
             return false;
@@ -33,7 +34,7 @@ public class Rocket implements SpaceShip {
 
     //This method takes an Item object and update the current weight of the Rocket
     public void carry(Item i) {
-        cargo += i.weight;
+        currentCargo += i.weight;
     }
 
 }

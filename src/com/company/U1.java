@@ -1,9 +1,9 @@
 package com.company;
 
 /**
- * The U-1 Rocket is light weight, agile and pretty safe, but can only carry a total of 18 tonnes of cargo. It
+ * The U-1 Rocket is light weight, agile and pretty safe, but can only carry a total of 18 tonnes of currentCargo. It
  * costs $60 Million to build and weighs 10 tonnes. It has a slim chance of crashing while landing but a bigger chance
- * of exploding when launching, both chances depend on the amount of cargo carried in the rocket.
+ * of exploding when launching, both chances depend on the amount of currentCargo carried in the rocket.
  */
 
 
@@ -15,9 +15,9 @@ public class U1 extends Rocket {
         rocketWeight=10;
         maxWeight=18;
         maxCargo = maxWeight - rocketWeight;
-        cargo=0;
-        probLaunchSuccess = 1 - (0.05 * (cargo/maxCargo));
-        probLandSuccess = 1 - (0.01 * (cargo/maxCargo));
+        currentCargo =0;
+        probLaunchSuccess = 1 - (0.05 * (currentCargo /maxCargo));
+        probLandSuccess = 1 - (0.01 * (currentCargo /maxCargo));
     }
 
 
