@@ -8,5 +8,7 @@ public class U2 extends Rocket {
     final int maxWeight = 29;
     //maxCargo is the maximum weight of the cargo
     final int maxCargo = maxWeight - rocketWeight;
+    int cargo;
+
 
 }
