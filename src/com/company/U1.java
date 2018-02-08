@@ -1,25 +1,49 @@
 package com.company;
 
+/**
+ * The U-1 Rocket is light weight, agile and pretty safe, but can only carry a total of 18 tonnes of cargo. It
+ * costs $60 Million to build and weighs 10 tonnes. It has a slim chance of crashing while landing but a bigger chance
+ * of exploding when launching, both chances depend on the amount of cargo carried in the rocket.
+ */
+
+
 public class U1 extends Rocket {
 
-    //Fields. All weights are in tonnes, and cost in Million $
-    final int cost = 100;
-    final private int rocketWeight = 10;
-    final private int maxWeight = 18;
-    //maxCargo is the maximum weight of the cargo
-    final private int maxCargo = maxWeight - rocketWeight;
-    int cargo;
+    //Constructor: assigning values to Rocket Fields. All weights are in tonnes, and cost in Million $
+    U1 () {
+        cost=100;
+        rocketWeight=10;
+        maxWeight=18;
+        maxCargo = maxWeight - rocketWeight;
+        cargo=0;
+        probLaunchSuccess = 1 - (0.05 * (cargo/maxCargo));
+        probLandSuccess = 1 - (0.01 * (cargo/maxCargo));
+    }
 
-    //Override the launch method so we can simulate if the launch will be successful, or result in a crash
-    @Override
-    //need to change this later to take an Item object as an input not hte cargo weight
+
+    //launch method; return true if the launch was successful
     public boolean launch(int cargo) {
-        double chance = (cargo / this.maxCargo) * (1 - 0.05);
-        int success = (int) (Math.random() * (chance * 10));
-        if (success>=1) {
+        int success = (int) (Math.random() * (probLaunchSuccess * 10));
+        if (success >= 1) {
+            rocketStatus = "launched";
             return true;
         } else {
+            rocketStatus = "exploded";
             return false;
         }
     }
+
+    //land method; return true if the landing was successful
+    public boolean land(int cargo) {
+        int success = (int) (Math.random() * (probLandSuccess * 10));
+        if (success >= 1) {
+            rocketStatus = "landed";
+            return true;
+        } else {
+            rocketStatus = "crashed";
+            return false;
+        }
+    }
+
+
 }
