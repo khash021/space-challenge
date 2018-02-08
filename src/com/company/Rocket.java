@@ -22,6 +22,7 @@ public class Rocket implements SpaceShip {
         return true;
     }
 
+    //This method takes an Item and return true if the Rocket can carry that Item
     public boolean canCarry(Item i) {
         if(i.weight <= cargo) {
             return true;
@@ -30,6 +31,7 @@ public class Rocket implements SpaceShip {
         }
     }
 
+    //This method takes an Item object and update the current weight of the Rocket
     public void carry(Item i) {
         cargo += i.weight;
     }
