@@ -8,6 +8,11 @@ public class Simulation {
 
     /**
      * This method generates an ArrayList of type Item from the txt file
+     *
+     * NOTE: The functionality of this method, at this point, is based on the following assumption:
+     *      Each item in the txt file is in a new line, AND
+     *      The format is name=weight and it splits it using the "=" delimiter, and the weights are in ton
+     *
      * @param s this is the name of the file (e.g phase-1.txt)
      * @return the ArrayList of Items from that file
      * @throws Exception (File not Found)
