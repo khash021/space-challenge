@@ -9,9 +9,10 @@ public class Rocket implements SpaceShip {
     int cargo=0;           //Current cargo weight of the Rocket
     int maxCargo = maxWeight - rocketWeight;
 
-    double random=0.0;
-    double probLaunchExplosion=0.0;
-    double probLandCrash=0.0;
+    double probLaunchSuccess=0.0;
+    double probLandSuccess=0.0;
+
+    String rocketStatus = "not loaded";             // not loaded, loaded, exploded, launched, crashed, landed
 
     //U1 and U2 will override launch and land methods using their weight and probabilities.
     public boolean launch() {
