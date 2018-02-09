@@ -47,23 +47,23 @@ public class Simulation  {
         //Checks to see if there is still any Items left in the input array to be loaded into U1 rockets
         U1 u1 = new U1();
         for (Item item : inputArray) {
-            int U1size = loadedU1Array.size();
-//            Item item = new Item();
-//            int counter = inputArray.size();
-//            //Checks to see if there is any room left in U1 Rocket as long as there are still items left in inputArray
-//            for (int i =0; i<counter; i++) {
-//                //Check to see if U1 can carry current item
-            int itemWeight = item.weight;
-            int currentCargoWeight = u1.currentCargo;
+            //First checks to see if item can be added, if not; it first add the U1 ship to the array, set the cargo
+            //weight back to zero (start a new ship)
+            if (!(u1.canCarry(item))) {
+                loadedU1Array.add(u1);
+                u1.currentCargo=0;
+            }
             if (u1.canCarry(item)) {
                 u1.carry(item);
-//                   inputArray.remove(i);
             } else {
                 //if there is no more room left in u1, add loaded u1 rocket into the output array
                 loadedU1Array.add(u1);
                 u1.currentCargo=0;
             } //else
         } //for
+        //Since on the last item, we might have missed the else method (it would not run it if there is still space
+        //available on the ship) and we need to manually add the last ship which might not be full to the array
+        loadedU1Array.add(u1);
         return loadedU1Array;
     } //loadU1
 
