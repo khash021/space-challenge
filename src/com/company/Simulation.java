@@ -67,4 +67,24 @@ public class Simulation  {
         return loadedU1Array;
     } //loadU1
 
+    //Identical to the method for U1, but for U2
+    public ArrayList<U2> loadU2 (ArrayList<Item> inputArray) {
+
+        U2 u2 = new U2();
+        for (Item item : inputArray) {
+            if (!(u2.canCarry(item))) {
+                loadedU2Array.add(u2);
+                u2.currentCargo=0;
+            }
+            if (u2.canCarry(item)) {
+                u2.carry(item);
+            } else {
+                loadedU2Array.add(u2);
+                u2.currentCargo=0;
+            }
+        }
+        loadedU2Array.add(u2);
+        return loadedU2Array;
+    }
+
 }
