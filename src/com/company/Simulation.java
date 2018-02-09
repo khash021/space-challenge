@@ -4,7 +4,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Simulation {
+public class Simulation  {
+
+    public static void print(String s) {
+        System.out.println(s);
+    }
 
     //Declaring variables
     private ArrayList<Item> loadArray = new ArrayList<>();
@@ -12,6 +16,8 @@ public class Simulation {
     private ArrayList<U2> loadedU2Array = new ArrayList<>();
 
     private int cost = 0;
+
+    public Simulation() throws Exception{}
 
     /**
      * This method generates an ArrayList of type Item from the txt file
@@ -37,16 +43,28 @@ public class Simulation {
         return loadArray;
     }
 
-    public ArrayList<U1> loadU1 (ArrayList inputArray) {
-
-    }
-
-    public ArrayList<U1> loadU1 (ArrayList inputArray) {
-
-    }
-
-    public int runSimulation (ArrayList phase1, ArrayList phase2) {
-
-    }
+    public ArrayList<U1> loadU1 (ArrayList<Item> inputArray) {
+        //Checks to see if there is still any Items left in the input array to be loaded into U1 rockets
+        U1 u1 = new U1();
+        for (Item item : inputArray) {
+            int U1size = loadedU1Array.size();
+//            Item item = new Item();
+//            int counter = inputArray.size();
+//            //Checks to see if there is any room left in U1 Rocket as long as there are still items left in inputArray
+//            for (int i =0; i<counter; i++) {
+//                //Check to see if U1 can carry current item
+            int itemWeight = item.weight;
+            int currentCargoWeight = u1.currentCargo;
+            if (u1.canCarry(item)) {
+                u1.carry(item);
+//                   inputArray.remove(i);
+            } else {
+                //if there is no more room left in u1, add loaded u1 rocket into the output array
+                loadedU1Array.add(u1);
+                u1.currentCargo=0;
+            } //else
+        } //for
+        return loadedU1Array;
+    } //loadU1
 
 }
