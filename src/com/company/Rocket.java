@@ -3,17 +3,29 @@ package com.company;
 public class Rocket implements SpaceShip {
 
     //Declare variables and set to zero. U1 and U2 which are the children will overwrite them
-    int cost=0;
-    int rocketWeight=0;
-    int maxWeight=0;
-    int currentCargo =0;        //Current currentCargo weight of the Rocket
+    int cost;
+    int rocketWeight;
+    int maxWeight;
+    int currentCargo;        //Current currentCargo weight of the Rocket
     int maxCargo = maxWeight - rocketWeight;
-    int availableCargo = maxCargo - currentCargo;
 
-    double probLaunchSuccess=0.0;
-    double probLandSuccess=0.0;
+    double probLaunchSuccess;
+    double probLandSuccess;
 
-    String rocketStatus = "not loaded";             // not loaded, loaded, exploded, launched, crashed, landed
+    String rocketStatus;             // not loaded, loaded, exploded, launched, crashed, landed
+
+    Rocket (){
+        int cost=0;
+        int rocketWeight=0;
+        int maxWeight=0;
+        int currentCargo =0;        //Current currentCargo weight of the Rocket
+        int maxCargo = maxWeight - rocketWeight;
+
+        double probLaunchSuccess=0.0;
+        double probLandSuccess=0.0;
+
+        String rocketStatus = "not loaded";
+    }
 
     //U1 and U2 will override launch and land methods using their weight and probabilities.
     public boolean launch() {
@@ -25,7 +37,7 @@ public class Rocket implements SpaceShip {
 
     //This method takes an Item and return true if the Rocket can carry that Item
     public boolean canCarry(Item i) {
-        if(i.weight <= availableCargo) {
+        if(i.weight <= (maxCargo - currentCargo)) {
             return true;
         } else {
             return false;
