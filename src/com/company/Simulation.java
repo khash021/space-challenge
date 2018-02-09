@@ -44,47 +44,38 @@ public class Simulation  {
     }
 
     public ArrayList<U1> loadU1 (ArrayList<Item> inputArray) {
-        //Checks to see if there is still any Items left in the input array to be loaded into U1 rockets
         U1 u1 = new U1();
-        for (Item item : inputArray) {
-            //First checks to see if item can be added, if not; it first add the U1 ship to the array, set the cargo
-            //weight back to zero (start a new ship)
-            if (!(u1.canCarry(item))) {
-                loadedU1Array.add(u1);
-                u1.currentCargo=0;
-            }
-            if (u1.canCarry(item)) {
-                u1.carry(item);
-            } else {
-                //if there is no more room left in u1, add loaded u1 rocket into the output array
-                loadedU1Array.add(u1);
-                u1.currentCargo=0;
-            } //else
-        } //for
-        //Since on the last item, we might have missed the else method (it would not run it if there is still space
-        //available on the ship) and we need to manually add the last ship which might not be full to the array
-        loadedU1Array.add(u1);
+        while (inputArray.size() > 0) {
+            int size = inputArray.size();
+            for (int i=size; i>0 ; i--) {
+                Item item = inputArray.get(i-1);
+                if (u1.canCarry(item)) {
+                    u1.carry(item);
+                    inputArray.remove(i-1);
+                } //if
+            } //for
+            loadedU1Array.add(u1);
+            u1 = new U1();
+        } //while
         return loadedU1Array;
     } //loadU1
 
     //Identical to the method for U1, but for U2
     public ArrayList<U2> loadU2 (ArrayList<Item> inputArray) {
-
         U2 u2 = new U2();
-        for (Item item : inputArray) {
-            if (!(u2.canCarry(item))) {
-                loadedU2Array.add(u2);
-                u2.currentCargo=0;
-            }
-            if (u2.canCarry(item)) {
-                u2.carry(item);
-            } else {
-                loadedU2Array.add(u2);
-                u2.currentCargo=0;
-            }
-        }
-        loadedU2Array.add(u2);
+        while (inputArray.size() > 0) {
+            int size = inputArray.size();
+            for (int i=size; i>0 ; i--) {
+                Item item = inputArray.get(i-1);
+                if (u2.canCarry(item)) {
+                    u2.carry(item);
+                    inputArray.remove(i-1);
+                } //if
+            } //for
+            loadedU2Array.add(u2);
+            u2 = new U2();
+        } //while
         return loadedU2Array;
-    }
+    } //loadU1
 
 }
