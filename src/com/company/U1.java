@@ -10,7 +10,7 @@ package com.company;
 public class U1 extends Rocket {
 
     //Constructor: assigning values to Rocket Fields. All weights are in tonnes, and cost in Million $
-    U1 () {
+    U1() {
         cost=100;
         rocketWeight=10;
         maxWeight=18;
